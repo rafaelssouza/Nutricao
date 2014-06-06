@@ -30,7 +30,7 @@ public class PacienteDao {
 
     public void adiciona(PacienteBean pacienteBean) {
 
-        String sql = "insert into clientes "
+        String sql = "insert into paciente "
                 + "(id, nome, cpf, rg, sexo, endereco, uf, cep, bairro, telefoneResidencial,"
                 + " telefoneAlternativo, celular, email, dataNascimento, "
                 + " login, senha, numeroCadastro, nm_responsavel)"
@@ -143,7 +143,7 @@ public class PacienteDao {
     }
 
     public void altera(PacienteBean paciente) {
-        String sql = "update contatos set nome=?, cpf=?, rg=?, sexo=?, uf=?"
+        String sql = "update paciente set nome=?, cpf=?, rg=?, sexo=?, uf=?"
                 + ", cep=?, bairro=?, telefoneResidencial=? "
                 + ", telefoneAlternativo=?, telefoneCelular=?, email=?, dtNascimento=?"
                 + ", numeroCadastro=?, nm_responsavel , where id=?";
