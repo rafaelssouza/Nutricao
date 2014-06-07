@@ -53,6 +53,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/nutricao/imagens/agendamento_32x32.png"))); // NOI18N
+
         jLabel1.setText("Pacientes");
 
         jLabel2.setText("  Profissionais");
@@ -62,6 +64,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel4.setText("Patologia");
 
         jLabel5.setText("Sair");
+
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/nutricao/imagens/patologias.png"))); // NOI18N
+
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/nutricao/imagens/sair.jpg"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
