@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.senai.nutricao.view;
 
 /**
@@ -151,7 +150,9 @@ public class TelaBuscaPaciente extends javax.swing.JDialog {
     }//GEN-LAST:event_btnOKActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        // TODO add your handling code here:
+
+        this.setVisible(false);
+// TODO add your handling code here:
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
