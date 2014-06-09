@@ -151,7 +151,7 @@ public class TelaBuscaPaciente extends javax.swing.JDialog {
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
 
-        this.setVisible(false);
+              this.setVisible(false);
 // TODO add your handling code here:
     }//GEN-LAST:event_btnVoltarActionPerformed
 
