@@ -21,6 +21,8 @@ import java.util.List;
  */
 public class FuncionarioDao {
 
+    
+    
     private Connection connection;
 
     public FuncionarioDao() {

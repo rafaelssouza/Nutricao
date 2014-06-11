@@ -26,7 +26,7 @@ public class TelaBuscaPaciente extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        
+       
     }
 
     /**
@@ -171,7 +171,7 @@ public class TelaBuscaPaciente extends javax.swing.JDialog {
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
 
-              this.setVisible(false);
+              dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_btnVoltarActionPerformed
 
