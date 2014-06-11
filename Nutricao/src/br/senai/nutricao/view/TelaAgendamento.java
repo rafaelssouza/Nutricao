@@ -17,6 +17,7 @@ public class TelaAgendamento extends javax.swing.JDialog {
     public TelaAgendamento(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -72,6 +73,11 @@ public class TelaAgendamento extends javax.swing.JDialog {
         jLabel3.setText("Fone:");
 
         jButtonpesquisar.setText("...");
+        jButtonpesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonpesquisarActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Email:");
 
@@ -275,6 +281,11 @@ public class TelaAgendamento extends javax.swing.JDialog {
 
 // TODO add your handling code here:
     }//GEN-LAST:event_btnvoltarpascienteActionPerformed
+
+    private void jButtonpesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonpesquisarActionPerformed
+       TelaBuscaPaciente tbp = new TelaBuscaPaciente(null,true);
+       tbp.setVisible(true);
+    }//GEN-LAST:event_jButtonpesquisarActionPerformed
 
     /**
      * @param args the command line arguments
