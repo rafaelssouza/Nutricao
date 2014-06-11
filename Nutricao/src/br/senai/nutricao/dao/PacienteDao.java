@@ -52,7 +52,7 @@ public class PacienteDao {
         }
     }
 
-    
+        //Teste consulta por cpf ou id Rafael Souza
         public PacienteBean getPacienteByCpf(String cpf, int id) {
         
             try {
