@@ -18,6 +18,7 @@ public class TelaAgendamento extends javax.swing.JDialog {
     public TelaAgendamento(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -107,6 +108,11 @@ public class TelaAgendamento extends javax.swing.JDialog {
         jButton3.setText("Excluir");
 
         jButton4.setText("Procurar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Voltar");
 
@@ -162,6 +168,10 @@ public class TelaAgendamento extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -27,7 +27,63 @@ public class PacienteDao {
         this.connection = new ConnectionFactory().getConnection();
 
     }
+    //Teste insert Rafael Souza
+    public void adicionaTeste(PacienteBean pacienteBean) {
 
+        String sql = "insert into paciente "
+                + "(id, nome, cpf, rg, sexo)"
+                + " values (?,?,?,?,?)";
+        try {
+            // prepared statement para inserção
+            PreparedStatement stmt = connection.prepareStatement(sql);
+
+            // seta os valores
+            stmt.setInt(1, pacienteBean.getId());
+            stmt.setString(2, pacienteBean.getNome());
+            stmt.setString(3, pacienteBean.getCpf());
+            stmt.setString(4, pacienteBean.getRg());
+            stmt.setString(5, pacienteBean.getSexo());
+            
+            // executa
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    
+        public PacienteBean getPacienteByCpf(String cpf, int id) {
+        
+            try {
+            PacienteBean paciente = null;
+            PreparedStatement stmt = this.connection.
+                    prepareStatement("select nome,cpf from paciente where cpf = ? or id = ?");
+               
+            stmt.setString(1, cpf);
+            stmt.setInt(2, id);
+            ResultSet rs = stmt.executeQuery();
+                       
+            while (rs.next()) {
+                // criando o objeto Contato
+                paciente = new PacienteBean();
+                paciente.setNome(rs.getString("nome"));
+                paciente.setCpf(rs.getString("cpf"));
+               
+                }
+
+            rs.close();
+            stmt.close();
+            return paciente;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    
+    
+    
+    
     public void adiciona(PacienteBean pacienteBean) {
 
         String sql = "insert into paciente "
@@ -56,8 +112,8 @@ public class PacienteDao {
             stmt.setDate(14, (Date) pacienteBean.getDataNascimento());
             stmt.setString(15, pacienteBean.getLogin());
             stmt.setString(16, pacienteBean.getSenha());
-            stmt.setInt(16, pacienteBean.getNumeroCadastro());
-            stmt.setString(17, pacienteBean.getResponsavel());
+            stmt.setInt(17, pacienteBean.getNumeroCadastro());
+            stmt.setString(18, pacienteBean.getResponsavel());
 
             // executa
             stmt.execute();

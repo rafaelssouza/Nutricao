@@ -22,6 +22,8 @@ public class PessoaBean {
     protected String senha;
     protected Integer numeroCadastro;
 
+    
+   
     public Integer getNumeroCadastro() {
         return numeroCadastro;
     }
