@@ -14,11 +14,12 @@ import java.sql.SQLException;
  * @author jorge_filho
  */
 public class ConnectionFactory {
-
+        
+    
     public Connection getConnection() {
         try {
             return DriverManager.getConnection(
-                    "jdbc:mysql://localhost/test", "root", "mysql");
+                    "jdbc:mysql://localhost/test", "root", "root");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

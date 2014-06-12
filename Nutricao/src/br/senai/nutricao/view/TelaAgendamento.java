@@ -215,6 +215,11 @@ public class TelaAgendamento extends javax.swing.JDialog {
         jButton3.setText("Excluir");
 
         jButton4.setText("Procurar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         btnvoltarpasciente.setText("Voltar");
         btnvoltarpasciente.addActionListener(new java.awt.event.ActionListener() {
@@ -286,6 +291,10 @@ public class TelaAgendamento extends javax.swing.JDialog {
        TelaBuscaPaciente tbp = new TelaBuscaPaciente(null,true);
        tbp.setVisible(true);
     }//GEN-LAST:event_jButtonpesquisarActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

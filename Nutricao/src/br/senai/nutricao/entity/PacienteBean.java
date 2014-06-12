@@ -13,6 +13,17 @@ public class PacienteBean extends PessoaBean {
 
     private String responsavel;
 
+ 
+ public String getPesquisaPacienteNome(){
+     
+     return   nome;
+ }
+  public String getPesquisaPacienteCpf(){
+     
+     return  cpf;
+ }
+ 
+ 
     public String getResponsavel() {
         return responsavel;
     }
