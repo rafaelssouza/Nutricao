@@ -43,7 +43,6 @@ public class TelaAgendamento extends javax.swing.JDialog {
         jTextFieldemail = new javax.swing.JTextField();
         jFormattedTextFieldfone = new javax.swing.JFormattedTextField();
         jComboBoxprofissional = new javax.swing.JComboBox();
-        jDateChooserdata = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
         jComboBoxhora = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
@@ -162,9 +161,7 @@ public class TelaAgendamento extends javax.swing.JDialog {
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel5))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jDateChooserdata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBoxhora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jComboBoxhora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(37, 37, 37)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -190,10 +187,8 @@ public class TelaAgendamento extends javax.swing.JDialog {
                     .addComponent(jRadioButtonreconsulta))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jDateChooserdata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
+                        .addGap(23, 23, 23)
+                        .addComponent(jLabel5)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
@@ -348,7 +343,6 @@ public class TelaAgendamento extends javax.swing.JDialog {
     private javax.swing.JButton jButtonpesquisar;
     private javax.swing.JComboBox jComboBoxhora;
     private javax.swing.JComboBox jComboBoxprofissional;
-    private com.toedter.calendar.JDateChooser jDateChooserdata;
     private javax.swing.JFormattedTextField jFormattedTextFieldfone;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
