@@ -31,7 +31,7 @@ public class PacienteFacade {
             
     }
       
-      public void delitePaciente (PacienteBean paciente) {
+      public void removePaciente (PacienteBean paciente) {
           
              PacienteDao pacienteDAO = new PacienteDao();
             pacienteDAO.remove(paciente);
