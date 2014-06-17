@@ -30,6 +30,13 @@ public class PacienteFacade {
             JOptionPane.showMessageDialog(null,"Alterado com sucesso");
             
     }
+      
+      public void delitePaciente (PacienteBean paciente) {
+          
+             PacienteDao pacienteDAO = new PacienteDao();
+            pacienteDAO.remove(paciente);
+            JOptionPane.showMessageDialog(null,"Paciente excluido com sucesso");
+      }
      
      public PacienteBean getPesquisaByCpf(PacienteBean paciente){
         

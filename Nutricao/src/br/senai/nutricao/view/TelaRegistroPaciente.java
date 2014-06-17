@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.senai.nutricao.view;
 
 import br.senai.nutricao.dao.PacienteDao;
 import br.senai.nutricao.entity.PacienteBean;
 import br.senai.nutricao.facade.PacienteFacade;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -27,6 +27,7 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }
     PacienteBean pb = new PacienteBean();
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -459,6 +460,11 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
         });
 
         jButtonExcluir.setText("Excluir");
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirActionPerformed(evt);
+            }
+        });
 
         jButtonProcurar.setText("Procurar");
         jButtonProcurar.addActionListener(new java.awt.event.ActionListener() {
@@ -522,10 +528,10 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProcurarActionPerformed
-       TelaBuscaPaciente tbp = new TelaBuscaPaciente(null,true);
+        TelaBuscaPaciente tbp = new TelaBuscaPaciente(null, true);
         tbp.setVisible(true);
-       
-        
+
+
     }//GEN-LAST:event_jButtonProcurarActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
@@ -533,39 +539,43 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
         pb.setCpf(jTextField2Cpf.getText());
         pb.setRg(jTextField4Rg.getText());
         pb.setSexo("teste");
-        
-       PacienteFacade pf = new PacienteFacade();
-      pf.insertPaciente(pb);
+
+        PacienteFacade pf = new PacienteFacade();
+        pf.insertPaciente(pb);
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
-      
+
         pb.setNome(jTextField1Nome.getText());
         pb.setCpf(jTextField2Cpf.getText());
         pb.setRg(jTextField4Rg.getText());
-       // pb.setBairro(jTextFieldBairro.getText());
-       // pb.setDataNascimento(jFormattedTextFieldDtnascimento.getText().format(null,xx/yy/aaaa));
-       // pb.setTelefoneCelular(jTextFieldCelular.getText());
+        // pb.setBairro(jTextFieldBairro.getText());
+        // pb.setDataNascimento(jFormattedTextFieldDtnascimento.getText().format(null,xx/yy/aaaa));
+        // pb.setTelefoneCelular(jTextFieldCelular.getText());
         //pb.setEmail(jTextFieldEmail.getText());
-      // pb.setTelefoneAlternativo(jTextFieldTelRecado.getText());
-       // pb.setEstadoCivil(jComboBoxEstadoCivil.getSelectedItem()+ "");
-       // pb.setCep(jTextFieldCep.getText());
-       // pb.setResponsavel(jt);
-        
-        
-        
+        // pb.setTelefoneAlternativo(jTextFieldTelRecado.getText());
+        // pb.setEstadoCivil(jComboBoxEstadoCivil.getSelectedItem()+ "");
+        // pb.setCep(jTextFieldCep.getText());
+        // pb.setResponsavel(jt);
+
         PacienteFacade pf = new PacienteFacade();
 
-       // pf.updatePaciente(pb);
-
+        // pf.updatePaciente(pb);
         pf.updatePaciente(pb);
-        
+
 
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jComboBoxEstadoCivilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEstadoCivilActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxEstadoCivilActionPerformed
+
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+
+        int confirmacao = JOptionPane.showConfirmDialog(this, "Deseja Excluir?");
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     /**
      * @param args the command line arguments
