@@ -38,7 +38,6 @@ public class PacienteDao {
             PreparedStatement stmt = connection.prepareStatement(sql);
 
             // seta os valores
-            
             stmt.setString(1, pacienteBean.getNome());
             stmt.setString(2, pacienteBean.getCpf());
             stmt.setString(3, pacienteBean.getRg());

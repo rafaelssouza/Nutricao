@@ -23,6 +23,13 @@ public class PacienteFacade {
             JOptionPane.showMessageDialog(null,"Salvo com sucesso");
             
     }
+      public void updatePaciente(PacienteBean paciente) {
+
+            PacienteDao pacienteDAO = new PacienteDao();
+            pacienteDAO.altera(paciente);
+            JOptionPane.showMessageDialog(null,"Alterado com sucesso");
+            
+    }
      
      public PacienteBean getPesquisaByCpf(PacienteBean paciente){
         
