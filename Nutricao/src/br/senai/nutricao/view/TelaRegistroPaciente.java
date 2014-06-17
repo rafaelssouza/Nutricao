@@ -522,8 +522,8 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProcurarActionPerformed
-      //  TelaBuscaPaciente tbp = new TelaBuscaPaciente(null,true);
-      //  tbp.setVisible(true);
+       TelaBuscaPaciente tbp = new TelaBuscaPaciente(null,true);
+        tbp.setVisible(true);
        
         
     }//GEN-LAST:event_jButtonProcurarActionPerformed
