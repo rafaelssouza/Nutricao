@@ -24,15 +24,15 @@ public class PacienteFacade {
             
     }
      
-     public PacienteBean getPesquisaByCpf(String cpf, int id){
+     public PacienteBean getPesquisaByCpf(PacienteBean paciente){
         
         PacienteBean pb = new PacienteBean();
         PacienteDao dao = new PacienteDao();
         
-        pb.setCpf(cpf);
-        pb.setId(id);
+        pb.setCpf(paciente.getCpf());
+        pb.setId(paciente.getId());
         
-        return dao.getPacienteByCpf(cpf, id);
+        return dao.getPacienteByCpf(pb);
      }
      
 }

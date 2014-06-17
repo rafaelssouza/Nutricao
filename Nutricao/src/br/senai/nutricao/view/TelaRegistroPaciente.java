@@ -523,7 +523,7 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
         pb.setNome(jTextField1Nome.getText());
         pb.setCpf(jTextField2Cpf.getText());
         pb.setRg(jTextField4Rg.getText());
-       pb.setSexo("teste");
+        pb.setSexo("teste");
         
        PacienteFacade pf = new PacienteFacade();
       pf.insertPaciente(pb);
@@ -536,7 +536,7 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
         pb.setRg(jTextField4Rg.getText());
         pb.setBairro(jTextFieldBairro.getText());
         PacienteFacade pf = new PacienteFacade();
-        pf.updatePaciente(pb);
+       // pf.updatePaciente(pb);
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     /**
