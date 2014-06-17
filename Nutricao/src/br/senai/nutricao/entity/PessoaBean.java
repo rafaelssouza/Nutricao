@@ -20,8 +20,26 @@ public class PessoaBean {
     protected String rg;
     protected String login;
     protected String senha;
-    protected Integer numeroCadastro;
+    protected String Naturalidade;
 
+    public String getNaturalidade() {
+        return Naturalidade;
+    }
+
+    public void setNaturalidade(String Naturalidade) {
+        this.Naturalidade = Naturalidade;
+    }
+    
+
+    public String getEstadoCivil() {
+        return estadoCivil;
+    }
+
+    public void setEstadoCivil(String estadoCivil) {
+        this.estadoCivil = estadoCivil;
+    }
+    protected Integer numeroCadastro;
+    protected String estadoCivil;
     
    
     public Integer getNumeroCadastro() {
