@@ -31,18 +31,17 @@ public class PacienteDao {
     public void adicionaTeste(PacienteBean pacienteBean) {
 
         String sql = "insert into paciente "
-                + "(id, nome, cpf, rg, sexo)"
-                + " values (?,?,?,?,?)";
+                + "(nome, cpf, rg, sexo)"
+                + " values (?,?,?,?)";
         try {
             // prepared statement para inserção
             PreparedStatement stmt = connection.prepareStatement(sql);
 
             // seta os valores
-            stmt.setInt(1, pacienteBean.getId());
-            stmt.setString(2, pacienteBean.getNome());
-            stmt.setString(3, pacienteBean.getCpf());
-            stmt.setString(4, pacienteBean.getRg());
-            stmt.setString(5, pacienteBean.getSexo());
+            stmt.setString(1, pacienteBean.getNome());
+            stmt.setString(2, pacienteBean.getCpf());
+            stmt.setString(3, pacienteBean.getRg());
+            stmt.setString(4, pacienteBean.getSexo());
             
             // executa
             stmt.execute();
@@ -53,15 +52,15 @@ public class PacienteDao {
     }
 
         //Teste consulta por cpf ou id Rafael Souza
-        public PacienteBean getPacienteByCpf(String cpf, int id) {
+        public PacienteBean getPacienteByCpf(PacienteBean paciente) {
         
             try {
-            PacienteBean paciente = null;
+           
             PreparedStatement stmt = this.connection.
                     prepareStatement("select nome,cpf from paciente where cpf = ? or id = ?");
                
-            stmt.setString(1, cpf);
-            stmt.setInt(2, id);
+            stmt.setString(1, paciente.getCpf());
+            stmt.setInt(2, paciente.getId());
             ResultSet rs = stmt.executeQuery();
                        
             while (rs.next()) {

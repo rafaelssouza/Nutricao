@@ -23,16 +23,30 @@ public class PacienteFacade {
             JOptionPane.showMessageDialog(null,"Salvo com sucesso");
             
     }
+      public void updatePaciente(PacienteBean paciente) {
+
+            PacienteDao pacienteDAO = new PacienteDao();
+            pacienteDAO.altera(paciente);
+            JOptionPane.showMessageDialog(null,"Alterado com sucesso");
+            
+    }
+      
+      public void removePaciente (PacienteBean paciente) {
+          
+             PacienteDao pacienteDAO = new PacienteDao();
+            pacienteDAO.remove(paciente);
+            JOptionPane.showMessageDialog(null,"Paciente excluido com sucesso");
+      }
      
-     public PacienteBean getPesquisaByCpf(String cpf, int id){
+     public PacienteBean getPesquisaByCpf(PacienteBean paciente){
         
         PacienteBean pb = new PacienteBean();
         PacienteDao dao = new PacienteDao();
         
-        pb.setCpf(cpf);
-        pb.setId(id);
+        pb.setCpf(paciente.getCpf());
+        pb.setId(paciente.getId());
         
-        return dao.getPacienteByCpf(cpf, id);
+        return dao.getPacienteByCpf(pb);
      }
      
 }

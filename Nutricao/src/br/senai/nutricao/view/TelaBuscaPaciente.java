@@ -50,7 +50,7 @@ public class TelaBuscaPaciente extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar Paciente", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar Paciente", 2, 0, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
         jLabel1.setText("Digite CPF:");
 
@@ -161,8 +161,8 @@ public class TelaBuscaPaciente extends javax.swing.JDialog {
         
         DefaultTableModel tabela = (DefaultTableModel) jTable1.getModel();
         
-        tabela.addRow(new String[]{facade.getPesquisaByCpf(bean.getCpf(), bean.getId()).getPesquisaPacienteNome(),
-                facade.getPesquisaByCpf(bean.getCpf(), bean.getId()).getPesquisaPacienteCpf()});
+        tabela.addRow(new String[]{facade.getPesquisaByCpf(bean).getPesquisaPacienteNome(),
+                facade.getPesquisaByCpf(bean).getPesquisaPacienteCpf()});
         
         
         
