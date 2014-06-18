@@ -573,21 +573,16 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
 
         int confirmacao = JOptionPane.showConfirmDialog(this, "Deseja Excluir?");
-
-        pb.setNome(jTextField1Nome.getText());
-        pb.setCpf(jTextField2Cpf.getText());
-        pb.setRg(jTextField4Rg.getText());
-        // pb.setBairro(jTextFieldBairro.getText());
-        // pb.setDataNascimento(jFormattedTextFieldDtnascimento.getText().format(null,xx/yy/aaaa));
-        // pb.setTelefoneCelular(jTextFieldCelular.getText());
-        //pb.setEmail(jTextFieldEmail.getText());
-        // pb.setTelefoneAlternativo(jTextFieldTelRecado.getText());
-        // pb.setEstadoCivil(jComboBoxEstadoCivil.getSelectedItem()+ "");
-        // pb.setCep(jTextFieldCep.getText());
-        // pb.setResponsavel(jt);
+        PacienteBean pb = new PacienteBean();
 
         PacienteFacade pf = new PacienteFacade();
-        pf.removePaciente(pb);
+        boolean removido = pf.removePaciente(pb);
+        if (removido == true) {
+         //  mostrar na tela
+
+        } else {
+
+        }
 
 // TODO add your handling code here:
     }//GEN-LAST:event_jButtonExcluirActionPerformed

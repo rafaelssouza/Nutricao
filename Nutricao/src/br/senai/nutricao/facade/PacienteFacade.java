@@ -31,11 +31,17 @@ public class PacienteFacade {
             
     }
       
-      public void removePaciente (PacienteBean paciente) {
+      public boolean removePaciente (PacienteBean paciente) {
           
              PacienteDao pacienteDAO = new PacienteDao();
-            pacienteDAO.remove(paciente);
-            JOptionPane.showMessageDialog(null,"Paciente excluido com sucesso");
+           int linha = pacienteDAO.remove(paciente);
+           // JOptionPane.showMessageDialog(null,"Paciente excluido com sucesso");
+            
+            if (linha == 1){
+                return true;
+            }else{
+                return false;
+            }
       }
      
      public PacienteBean getPesquisaByCpf(PacienteBean paciente){
