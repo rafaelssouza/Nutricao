@@ -229,15 +229,17 @@ public class PacienteDao {
         }
     }
 
-    public void remove(PacienteBean paciente) {
+    public int remove(PacienteBean paciente) {
+        int linha =0;
         try {
             PreparedStatement stmt = connection
                     .prepareStatement("delete from paciente where id=?");
             stmt.setLong(1, paciente.getId());
-            stmt.execute();
+            linha = stmt.executeUpdate();
             stmt.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return linha;
     }
 }
