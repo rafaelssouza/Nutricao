@@ -80,7 +80,7 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
         jTextFieldTelRecado = new javax.swing.JTextField();
         jTextFieldCep = new javax.swing.JTextField();
         jLabel32 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextField1ID = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -187,8 +187,8 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
 
         jLabel32.setText("Cep");
 
-        jTextField1.setEditable(false);
-        jTextField1.setText("000");
+        jTextField1ID.setEditable(false);
+        jTextField1ID.setText("000");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -222,7 +222,7 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel21)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextField1ID, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel4)
                             .addComponent(jLabel22)
                             .addComponent(jLabel7)
@@ -291,7 +291,7 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextField1ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -497,7 +497,7 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
                     .addComponent(jButtonAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
                     .addComponent(jButtonExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
-                    .addComponent(jButtonProcurar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, Short.MAX_VALUE)
+                    .addComponent(jButtonProcurar, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
                     .addComponent(jButtonVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane1Cadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -689,7 +689,7 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
     private javax.swing.JRadioButton jRadioButton5;
     private javax.swing.JRadioButton jRadioButton6;
     private javax.swing.JTabbedPane jTabbedPane1Cadastro;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField1ID;
     private javax.swing.JTextField jTextField1Nome;
     private javax.swing.JTextField jTextField2Cpf;
     private javax.swing.JTextField jTextField4Rg;
