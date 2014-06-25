@@ -14,6 +14,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -21,55 +23,67 @@ import java.util.List;
  */
 public class PacienteDao {
 
-    private Connection connection;
-
     public PacienteDao() {
-        this.connection = new ConnectionFactory().getConnection();
 
     }
+
     //Teste insert Rafael Souza
     public void adicionaTeste(PacienteBean pacienteBean) {
 
         String sql = "insert into paciente "
-                + "(nome, cpf, rg, sexo)"
-                + " values (?,?,?,?)";
+                + "(nome, cpf, rg)"
+                + " values (?,?,?)";
+        Connection connection = null;
+        PreparedStatement stmt = null;
         try {
+            //Cria conexão
+            connection = new ConnectionFactory().getConnection();
             // prepared statement para inserção
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt = connection.prepareStatement(sql);
 
             // seta os valores
             stmt.setString(1, pacienteBean.getNome());
             stmt.setString(2, pacienteBean.getCpf());
             stmt.setString(3, pacienteBean.getRg());
-            stmt.setString(4, pacienteBean.getSexo());
-            
+            //stmt.setString(4, pacienteBean.getSexo());
+
             // executa
             stmt.execute();
-            stmt.close();
+
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+        } finally {
+            try {
+                //Fecha conexão e PreparedStatement
+                stmt.close();
+                connection.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
-        //Teste consulta por cpf ou id Rafael Souza
-        public PacienteBean getPacienteByCpf(PacienteBean paciente) {
-        
-            try {
-           
-            PreparedStatement stmt = this.connection.
-                    prepareStatement("select nome,cpf from paciente where cpf = ? or id = ?");
-               
+    //Teste consulta por cpf ou id Rafael Souza
+    public PacienteBean getPacienteByCpf(PacienteBean paciente) {
+
+        Connection connection = null;
+        PreparedStatement stmt = null;
+        try {
+            //Cria conexão
+            connection = new ConnectionFactory().getConnection();
+            stmt = connection.prepareStatement("select nome,cpf from paciente where cpf = ? or id = ?");
+
             stmt.setString(1, paciente.getCpf());
             stmt.setInt(2, paciente.getId());
             ResultSet rs = stmt.executeQuery();
-                       
+
             while (rs.next()) {
                 // criando o objeto Contato
                 paciente = new PacienteBean();
                 paciente.setNome(rs.getString("nome"));
                 paciente.setCpf(rs.getString("cpf"));
-               
-                }
+
+            }
 
             rs.close();
             stmt.close();
@@ -79,10 +93,6 @@ public class PacienteDao {
         }
     }
 
-    
-    
-    
-    
     public void adiciona(PacienteBean pacienteBean) {
 
         String sql = "insert into paciente "
@@ -90,9 +100,12 @@ public class PacienteDao {
                 + " telefoneAlternativo, celular, email, dataNascimento, "
                 + " login, senha, numeroCadastro, nm_responsavel)"
                 + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        
+        Connection connection = null;
+        PreparedStatement stmt = null;
         try {
             // prepared statement para inserção
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt = connection.prepareStatement(sql);
 
             // seta os valores
             stmt.setInt(1, pacienteBean.getId());
@@ -123,10 +136,12 @@ public class PacienteDao {
     }
 
     public PacienteBean getPesquisaPaciente(PacienteBean pacienteBean) {
+        
+        Connection connection = null;
+        PreparedStatement stmt = null;
         try {
             PacienteBean paciente = pacienteBean;
-            PreparedStatement stmt = this.connection.
-                    prepareStatement("select * from paciente where cpf=?");
+            stmt = connection.prepareStatement("select * from paciente where cpf=?");
 
             stmt.setString(1, paciente.getCpf());
 
@@ -161,10 +176,12 @@ public class PacienteDao {
     }
 
     public List<PacienteBean> getListaPacientes() {
+        
+        Connection connection = null;
+        PreparedStatement stmt = null;
         try {
-            List<PacienteBean> listPacientes = new ArrayList<PacienteBean>();
-            PreparedStatement stmt = this.connection.
-                    prepareStatement("select * from paciente");
+            List<PacienteBean> listPacientes = new ArrayList();
+            stmt = connection.prepareStatement("select * from paciente");
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -203,9 +220,11 @@ public class PacienteDao {
                 + ", telefoneAlternativo=?, telefoneCelular=?, email=?, dtNascimento=?"
                 + ", numeroCadastro=?, nm_responsavel , where id=?";
 
+        Connection connection = null;
+        PreparedStatement stmt = null;
+        
         try {
-            PreparedStatement stmt = connection
-                    .prepareStatement(sql);
+            stmt = connection.prepareStatement(sql);
             stmt.setString(1, paciente.getNome());
             stmt.setString(2, paciente.getCpf());
             stmt.setString(3, paciente.getRg());
@@ -230,10 +249,11 @@ public class PacienteDao {
     }
 
     public int remove(PacienteBean paciente) {
-        int linha =0;
+        int linha = 0;
+        Connection connection = null;
+        PreparedStatement stmt = null;
         try {
-            PreparedStatement stmt = connection
-                    .prepareStatement("delete from paciente where id=?");
+            stmt = connection.prepareStatement("delete from paciente where id=?");
             stmt.setLong(1, paciente.getId());
             linha = stmt.executeUpdate();
             stmt.close();

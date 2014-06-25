@@ -158,7 +158,9 @@ public class TelaBuscaPaciente extends javax.swing.JDialog {
         
             bean.setCpf(txtCPF.getText());
             bean.setId(Integer.parseInt(txtCodigoPasceinte.getText()));
-        
+            
+            System.out.println(facade.getPesquisaByCpf(bean));
+            
         DefaultTableModel tabela = (DefaultTableModel) jTable1.getModel();
         
         tabela.addRow(new String[]{facade.getPesquisaByCpf(bean).getPesquisaPacienteNome(),
