@@ -16,17 +16,18 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author cleiton
  */
-public class TelaBuscaPaciente extends javax.swing.JDialog {
+  public class TelaBuscaPaciente extends javax.swing.JDialog {
+
+    DefaultTableModel tabela = null;
 
     /**
      * Creates new form TelaBuscaPaciente
      */
-    
     public TelaBuscaPaciente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-       
+
     }
 
     /**
@@ -43,14 +44,15 @@ public class TelaBuscaPaciente extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         txtCPF = new javax.swing.JFormattedTextField();
         txtCodigoPasceinte = new javax.swing.JTextField();
-        btnOK = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar Paciente", 2, 0, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar Paciente", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
         jLabel1.setText("Digite CPF:");
 
@@ -62,10 +64,10 @@ public class TelaBuscaPaciente extends javax.swing.JDialog {
             ex.printStackTrace();
         }
 
-        btnOK.setText("OK");
-        btnOK.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOKActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
 
@@ -86,6 +88,13 @@ public class TelaBuscaPaciente extends javax.swing.JDialog {
         ));
         jScrollPane2.setViewportView(jTable1);
 
+        jButton1.setText("OK");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -94,34 +103,40 @@ public class TelaBuscaPaciente extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtCodigoPasceinte, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtCodigoPasceinte, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnOK)
-                        .addGap(78, 78, 78)
+                        .addGap(63, 63, 63)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnVoltar)
                         .addGap(138, 138, 138))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 10, Short.MAX_VALUE))))
+                        .addGap(0, 10, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBuscar)
+                        .addGap(125, 125, 125))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(btnBuscar)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtCodigoPasceinte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -129,8 +144,8 @@ public class TelaBuscaPaciente extends javax.swing.JDialog {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnOK)
-                    .addComponent(btnVoltar))
+                    .addComponent(btnVoltar)
+                    .addComponent(jButton1))
                 .addContainerGap())
         );
 
@@ -150,32 +165,59 @@ public class TelaBuscaPaciente extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+
         
         
         PacienteBean bean = new PacienteBean();
         PacienteFacade facade = new PacienteFacade();
         
-            bean.setCpf(txtCPF.getText());
-            bean.setId(Integer.parseInt(txtCodigoPasceinte.getText()));
-            
-            System.out.println(facade.getPesquisaByCpf(bean));
-            
+        tabela = (DefaultTableModel) jTable1.getModel();
+
+        bean.setCpf(txtCPF.getText()!= null ? txtCPF.getText() :  "");
+        bean.setId(Integer.parseInt(txtCodigoPasceinte.getText()));
+
+        System.out.println(facade.getPesquisaByCpf(bean));
+
         DefaultTableModel tabela = (DefaultTableModel) jTable1.getModel();
-        
+
         tabela.addRow(new String[]{facade.getPesquisaByCpf(bean).getPesquisaPacienteNome(),
-                facade.getPesquisaByCpf(bean).getPesquisaPacienteCpf()});
-        
-        
-        
-        
-    }//GEN-LAST:event_btnOKActionPerformed
+            facade.getPesquisaByCpf(bean).getPesquisaPacienteCpf()});
+
+
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
 
-              dispose();
+        dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        int[] vetorDeLinhasSelecionadas = jTable1.getSelectedRows();
+        if (vetorDeLinhasSelecionadas.length == 1) {
+
+            int linha = vetorDeLinhasSelecionadas[0];
+
+            String cpf = (String) tabela.getValueAt(linha, 1);
+            PacienteFacade pacienteFacade = new PacienteFacade();
+            PacienteBean pacienteBean = new PacienteBean();
+            pacienteBean.setCpf("" + cpf);
+
+            pacienteBean = pacienteFacade.getPesquisaByCpf(pacienteBean);
+
+            TelaRegistroPaciente telaRegistroPaciente = new TelaRegistroPaciente(null, true, pacienteBean);
+
+            telaRegistroPaciente.setVisible(true);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione Corretamente um Paciente");
+
+        }
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,13 +260,12 @@ public class TelaBuscaPaciente extends javax.swing.JDialog {
             }
         });
     }
-    
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnOK;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnVoltar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

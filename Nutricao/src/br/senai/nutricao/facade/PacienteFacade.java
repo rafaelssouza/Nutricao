@@ -35,9 +35,9 @@ public class PacienteFacade {
           
              PacienteDao pacienteDAO = new PacienteDao();
            int linha = pacienteDAO.remove(paciente);
-           // JOptionPane.showMessageDialog(null,"Paciente excluido com sucesso");
+           JOptionPane.showMessageDialog(null,"Paciente excluido com sucesso");
             
-            if (linha == 1){
+            if (linha == 0){
                 return true;
             }else{
                 return false;

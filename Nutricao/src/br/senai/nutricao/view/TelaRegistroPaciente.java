@@ -20,13 +20,29 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
 
     /**
      * Creates new form TelaRegistroPaciente
+     * 
+     * 
      */
-    public TelaRegistroPaciente(java.awt.Frame parent, boolean modal) {
+     public TelaRegistroPaciente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+    
+     }
+    
+    public TelaRegistroPaciente(java.awt.Frame parent, boolean modal, PacienteBean pacienteBean) {
+        super(parent, modal);
+        initComponents();
+        setLocationRelativeTo(null);
+        
+        jTextField1Nome.setText(pacienteBean.getNome());
+        jTextField2Cpf.setText(pacienteBean.getCpf());
+        
     }
     PacienteBean pb = new PacienteBean();
+
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
