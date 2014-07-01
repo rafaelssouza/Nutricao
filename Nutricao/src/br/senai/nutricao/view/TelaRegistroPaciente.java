@@ -26,6 +26,8 @@ import javax.swing.JTextField;
  */
 public class TelaRegistroPaciente extends javax.swing.JDialog {
 
+    private PacienteBean pb = new PacienteBean();
+    
     /**
      * Creates new form TelaRegistroPaciente
      * 
@@ -51,9 +53,10 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
         
         jTextField1Nome.setText(pacienteBean.getNome());
         jFormattedTextFieldCpf.setText(pacienteBean.getCpf());
+
         
     }
-    PacienteBean pb = new PacienteBean();
+     
 
 
     
@@ -645,6 +648,14 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
         
         //pf.updatePaciente(pb);
 
+
+        pf.updatePaciente(pb);
+        
+        
+         jTextField1Nome.setText("");
+         jFormattedTextFieldCpf.setText("");
+         
+         JOptionPane.showMessageDialog(null,"Alterado com sucesso ");
 
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
