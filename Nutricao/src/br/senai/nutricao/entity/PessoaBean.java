@@ -1,5 +1,6 @@
 package br.senai.nutricao.entity;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class PessoaBean {
@@ -8,7 +9,8 @@ public class PessoaBean {
     protected String nome;
     protected String cpf;
     protected String sexo;
-    protected String endereco;
+    protected EnderecoBean endereco;
+    protected TipoPessoa tipo;
     protected String uf;
     protected String cep;
     protected String bairro;
@@ -16,11 +18,22 @@ public class PessoaBean {
     protected String telefoneAlternativo;
     protected String telefoneCelular;
     protected String email;
-    protected Date dataNascimento;
+    protected Calendar dataNascimento;
     protected String rg;
     protected String login;
     protected String senha;
     protected String Naturalidade;
+     protected Integer numeroCadastro;
+    protected String estadoCivil;
+    protected int idade;
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
+    }
 
     public String getNaturalidade() {
         return Naturalidade;
@@ -38,9 +51,7 @@ public class PessoaBean {
     public void setEstadoCivil(String estadoCivil) {
         this.estadoCivil = estadoCivil;
     }
-    protected Integer numeroCadastro;
-    protected String estadoCivil;
-    
+   
    
     public Integer getNumeroCadastro() {
         return numeroCadastro;
@@ -114,14 +125,6 @@ public class PessoaBean {
         this.sexo = sexo;
     }
 
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
     public String getCep() {
         return cep;
     }
@@ -170,12 +173,31 @@ public class PessoaBean {
         this.email = email;
     }
 
-    public Date getDataNascimento() {
+    public Calendar getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(Calendar dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
+
+    public EnderecoBean getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(EnderecoBean endereco) {
+        this.endereco = endereco;
+    }
+
+    public TipoPessoa getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoPessoa tipo) {
+        this.tipo = tipo;
+    }
+
+    
+    
 }
