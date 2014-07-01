@@ -18,6 +18,8 @@ import javax.swing.JTextField;
  */
 public class TelaRegistroPaciente extends javax.swing.JDialog {
 
+    private PacienteBean pb = new PacienteBean();
+    
     /**
      * Creates new form TelaRegistroPaciente
      * 
@@ -27,6 +29,7 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        
     
      }
     
@@ -37,9 +40,10 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
         
         jTextField1Nome.setText(pacienteBean.getNome());
         jTextField2Cpf.setText(pacienteBean.getCpf());
+        pb = pacienteBean;
         
     }
-    PacienteBean pb = new PacienteBean();
+     
 
 
     
@@ -607,8 +611,13 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
 
         // pf.updatePaciente(pb);
         pf.updatePaciente(pb);
-
-
+        
+        
+         jTextField1Nome.setText("");
+         jTextField2Cpf.setText("");
+         jTextField4Rg.setText("");
+         
+         JOptionPane.showMessageDialog(null,"Alterado com sucesso ");
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
