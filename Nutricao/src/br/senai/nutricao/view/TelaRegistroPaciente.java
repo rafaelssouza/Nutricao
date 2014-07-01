@@ -28,6 +28,8 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
 
     /**
      * Creates new form TelaRegistroPaciente
+     * 
+     * 
      */
     public TelaRegistroPaciente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -41,6 +43,20 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
     PacienteBean paciente = new PacienteBean();
     EnderecoBean endereco = new EnderecoBean();
     TipoPessoa tipo = new TipoPessoa();
+
+    public TelaRegistroPaciente(java.awt.Frame parent, boolean modal, PacienteBean pacienteBean) {
+        super(parent, modal);
+        initComponents();
+        setLocationRelativeTo(null);
+        
+        jTextField1Nome.setText(pacienteBean.getNome());
+        jFormattedTextFieldCpf.setText(pacienteBean.getCpf());
+        
+    }
+    PacienteBean pb = new PacienteBean();
+
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -242,8 +258,7 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextFieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldCep, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jTextFieldCep, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextField1Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -626,6 +641,7 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
 
         PacienteFacade pf = new PacienteFacade();
 
+        // pf.updatePaciente(pb);
         
         //pf.updatePaciente(pb);
 
