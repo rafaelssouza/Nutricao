@@ -52,7 +52,7 @@ import javax.swing.table.DefaultTableModel;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar Paciente", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar Paciente", 2, 0, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
         jLabel1.setText("Digite CPF:");
 
@@ -204,6 +204,7 @@ import javax.swing.table.DefaultTableModel;
             PacienteFacade pacienteFacade = new PacienteFacade();
             PacienteBean pacienteBean = new PacienteBean();
             pacienteBean.setCpf("" + cpf);
+            
 
             pacienteBean = pacienteFacade.getPesquisaByCpf(pacienteBean);
 
