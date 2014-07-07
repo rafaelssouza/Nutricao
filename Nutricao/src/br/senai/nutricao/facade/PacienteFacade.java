@@ -19,7 +19,7 @@ public class PacienteFacade {
      public void insertPaciente(PacienteBean paciente) {
 
             PacienteDao pacienteDAO = new PacienteDao();
-            pacienteDAO.adicionaTeste(paciente);
+            pacienteDAO.adicionaPaciente(paciente);
             JOptionPane.showMessageDialog(null,"Salvo com sucesso");
             
     }

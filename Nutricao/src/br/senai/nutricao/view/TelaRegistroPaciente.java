@@ -660,14 +660,14 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-
+        
         int confirmacao = JOptionPane.showConfirmDialog(this, "Deseja Excluir?");
         PacienteBean pb = new PacienteBean();
 
         PacienteFacade pf = new PacienteFacade();
         boolean removido = pf.removePaciente(pb);
         if (removido == true) {
-         //  mostrar na tela
+         //  mostrar na tela 
 
         } else {
 

@@ -36,7 +36,7 @@ public class PacienteDao {
     //Metodo provisorio Teste insert Rafael Souza
     public void adicionaTeste(PacienteBean pacienteBean) {
 
-        String sql = "insert into paciente "
+        String sql = "insert into pessoa "
                 + "(nome, cpf, rg)"
                 + " values (?,?,?)";
         
@@ -76,7 +76,7 @@ public class PacienteDao {
         try {
             //Cria conexão
             connection = new ConnectionFactory().getConnection();
-            stmt = connection.prepareStatement("select nome,cpf from paciente where cpf = ? or id = ?");
+            stmt = connection.prepareStatement("select nome, cpf from pessoa where cpf = ? or idPessoa = ?");
 
             stmt.setString(1, paciente.getCpf());
             stmt.setInt(2, paciente.getId());
@@ -219,7 +219,7 @@ public class PacienteDao {
         PreparedStatement stmt = null;
         try {
             PacienteBean paciente = pacienteBean;
-            stmt = connection.prepareStatement("select * from paciente where cpf=?");
+            stmt = connection.prepareStatement("select * from pessoa where cpf=?");
 
             stmt.setString(1, paciente.getCpf());
 
@@ -259,7 +259,7 @@ public class PacienteDao {
         PreparedStatement stmt = null;
         try {
             List<PacienteBean> listPacientes = new ArrayList();
-            stmt = connection.prepareStatement("select * from paciente");
+            stmt = connection.prepareStatement("select * from pessoa");
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -294,7 +294,7 @@ public class PacienteDao {
 
     //Não testado...
     public void altera(PacienteBean paciente) {
-        String sql = "update paciente set nome=?, cpf=?, rg=?, sexo=?, uf=?"
+        String sql = "update pessoa set nome=?, cpf=?, rg=?, sexo=?, uf=?"
                 + ", cep=?, bairro=?, telefoneResidencial=? "
                 + ", telefoneAlternativo=?, telefoneCelular=?, email=?, dtNascimento=?"
                 + ", numeroCadastro=?, nm_responsavel , where id=?";
@@ -332,7 +332,7 @@ public class PacienteDao {
         Connection connection = null;
         PreparedStatement stmt = null;
         try {
-            stmt = connection.prepareStatement("delete from paciente where id=?");
+            stmt = connection.prepareStatement("delete from pessoa where id=?");
             stmt.setLong(1, paciente.getId());
             linha = stmt.executeUpdate();
             stmt.close();
