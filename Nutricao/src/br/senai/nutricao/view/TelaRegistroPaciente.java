@@ -53,9 +53,8 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
           jTextField1Nome.setText(pacienteBean.getNome());
         jFormattedTextFieldCpf.setText(pacienteBean.getCpf());
         jTextField1ID.setText(pacienteBean.getId() + "");
-        this.pacienteBean = pacienteBean;
     }
-    PacienteBean pacienteBean;
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -652,7 +651,7 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
         int resposta = JOptionPane.showConfirmDialog(this, "Deseja excluir?", "Exclusão", 0);
         if (resposta == 0) {
             PacienteFacade pf = new PacienteFacade();            
-            String retorno = pf.removePessoa(pacienteBean);
+            String retorno = pf.removePessoa(pb);
             JOptionPane.showMessageDialog(rootPane, retorno);
         }
 
