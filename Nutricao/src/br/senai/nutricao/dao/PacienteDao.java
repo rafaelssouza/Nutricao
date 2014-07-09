@@ -332,7 +332,9 @@ public class PacienteDao {
         Connection connection = null;
         PreparedStatement stmt = null;
         try {
-            stmt = connection.prepareStatement("delete from pessoa where id=?");
+              //Cria conexão
+            connection = new ConnectionFactory().getConnection();
+            stmt = connection.prepareStatement("delete from pessoa where idPessoa=?");
             stmt.setLong(1, paciente.getId());
             linha = stmt.executeUpdate();
             stmt.close();
