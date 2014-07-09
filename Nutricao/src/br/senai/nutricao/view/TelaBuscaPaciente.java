@@ -9,6 +9,7 @@ import br.senai.nutricao.dao.PacienteDao;
 import br.senai.nutricao.entity.PacienteBean;
 import br.senai.nutricao.facade.PacienteFacade;
 import java.util.List;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,7 +19,9 @@ import javax.swing.table.DefaultTableModel;
  */
   public class TelaBuscaPaciente extends javax.swing.JDialog {
 
-    DefaultTableModel tabela = null;
+    private DefaultTableModel tabela = null;
+    private TelaRegistroPaciente telaRegistroPaciente;
+    
 
     /**
      * Creates new form TelaBuscaPaciente
@@ -28,6 +31,13 @@ import javax.swing.table.DefaultTableModel;
         initComponents();
         setLocationRelativeTo(null);
 
+    }
+    //Passa a TelaRegistroPaciente para a tela BuscaPaciente
+    public TelaBuscaPaciente(java.awt.Frame parent, boolean modal, TelaRegistroPaciente telaRegistroPaciente) {
+        super(parent, modal);
+        initComponents();
+        setLocationRelativeTo(null);
+        this.telaRegistroPaciente = telaRegistroPaciente;
     }
 
     /**
@@ -52,7 +62,7 @@ import javax.swing.table.DefaultTableModel;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar Paciente", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar Paciente", 2, 0, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
         jLabel1.setText("Digite CPF:");
 
@@ -166,8 +176,6 @@ import javax.swing.table.DefaultTableModel;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-
-        
         
         PacienteBean bean = new PacienteBean();
         PacienteFacade facade = new PacienteFacade();
@@ -204,18 +212,19 @@ import javax.swing.table.DefaultTableModel;
             PacienteFacade pacienteFacade = new PacienteFacade();
             PacienteBean pacienteBean = new PacienteBean();
             pacienteBean.setCpf("" + cpf);
-
+            
             pacienteBean = pacienteFacade.getPesquisaByCpf(pacienteBean);
-
-            TelaRegistroPaciente telaRegistroPaciente = new TelaRegistroPaciente(null, true, pacienteBean);
-
-            telaRegistroPaciente.setVisible(true);
+            
+            telaRegistroPaciente.setPaciente(pacienteBean);
+            telaRegistroPaciente.setAtualizaValoresTela();
+            
+            this.dispose();
 
         } else {
             JOptionPane.showMessageDialog(null, "Selecione Corretamente um Paciente");
 
         }
-
+        this.dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
