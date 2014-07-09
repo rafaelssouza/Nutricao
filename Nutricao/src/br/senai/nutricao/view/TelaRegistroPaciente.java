@@ -25,8 +25,9 @@ import javax.swing.JTextField;
  * @author Rafael
  */
 public class TelaRegistroPaciente extends javax.swing.JDialog {
-    
-    private PacienteBean pb = new PacienteBean();
+
+   
+   
 
     /**
      * Creates new form TelaRegistroPaciente
@@ -50,15 +51,18 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-          jTextField1Nome.setText(pacienteBean.getNome());
-        jFormattedTextFieldCpf.setText(pacienteBean.getCpf());
-        // Erro jFormattedTextFieldDtnascimento.setText(pacienteBean.getDataNascimento());
-      // jTextFieldCidade.setText(pacienteBean.getEndereco().getCidade());
-      jTextFieldEmail.setText(pacienteBean.getEmail());
-      //  jTextFieldIdade.setText(pacienteBean.getIdade()+"");
-          
+
     }
-    PacienteBean pacienteBean;
+
+    public void setAtualizaValoresTela() {
+        jTextField1Nome.setText(paciente.getNome());
+        jFormattedTextFieldCpf.setText(paciente.getCpf());
+        // Erro jFormattedTextFieldDtnascimento.setText(pacienteBean.getDataNascimento());
+        // jTextFieldCidade.setText(pacienteBean.getEndereco().getCidade());
+        jTextFieldEmail.setText(paciente.getEmail());
+        //  jTextFieldIdade.setText(pacienteBean.getIdade()+"");
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -549,7 +553,7 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProcurarActionPerformed
-        TelaBuscaPaciente tbp = new TelaBuscaPaciente(null, true);
+        TelaBuscaPaciente tbp = new TelaBuscaPaciente(null, true, this);
         tbp.setVisible(true);
         
 
@@ -591,15 +595,15 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
         paciente.setTelefoneResidencial(jFormattedTextFieldTelefone.getText());
         paciente.setTelefoneCelular(jTextFieldCelular.getText());
         paciente.setEmail(jTextFieldEmail.getText());
-        
+
         paciente.setTipo(tipo);
         paciente.setEndereco(endereco);
 
         //Chama o método facede para salvar o paciente
         pf.insertPaciente(paciente);
-        
+
         System.out.println("Gravado com sucesso!");
-        
+
         jTextField1ID.setText("");
         jTextField1Nome.setText("");
         jTextFieldBairro.setText("");
@@ -671,6 +675,15 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldIdadeActionPerformed
 
+    
+     public PacienteBean getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(PacienteBean paciente) {
+        this.paciente = paciente;
+    }
+    
     /**
      * @param args the command line arguments
      */
