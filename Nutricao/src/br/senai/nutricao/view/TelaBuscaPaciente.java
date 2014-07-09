@@ -32,7 +32,7 @@ import javax.swing.table.DefaultTableModel;
         setLocationRelativeTo(null);
 
     }
-    
+    //Passa a TelaRegistroPaciente para a tela BuscaPaciente
     public TelaBuscaPaciente(java.awt.Frame parent, boolean modal, TelaRegistroPaciente telaRegistroPaciente) {
         super(parent, modal);
         initComponents();
