@@ -6,6 +6,8 @@
 
 package br.senai.nutricao.view;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author rafael_santos-souza
@@ -18,6 +20,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public TelaPrincipal() {
         initComponents();
         setLocationRelativeTo(null);
+        
+        jButton1.setIcon(new ImageIcon("src\\br\\senai\\nutricao\\imagens\\Paciente.png"));
+        jButton2.setIcon(new ImageIcon("src\\br\\senai\\nutricao\\imagens\\profissionais.png"));
+        jButton3.setIcon(new ImageIcon("src\\br\\senai\\nutricao\\imagens\\agendamento_32x32.png"));
+        jButton6.setIcon(new ImageIcon("src\\br\\senai\\nutricao\\imagens\\patologias.png"));
+        jButton7.setIcon(new ImageIcon("src\\br\\senai\\nutricao\\imagens\\sair.jpg"));
+    
     }
 
     /**
@@ -46,21 +55,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\miguel_s\\Documents\\NetBeansProjects\\Nutricao\\Nutricao\\src\\br\\senai\\nutricao\\imagens\\Paciente.png")); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\miguel_s\\Documents\\NetBeansProjects\\Nutricao\\Nutricao\\src\\br\\senai\\nutricao\\imagens\\profissionais.png")); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-
-        jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\miguel_s\\Documents\\NetBeansProjects\\Nutricao\\Nutricao\\src\\br\\senai\\nutricao\\imagens\\agendamento_32x32.png")); // NOI18N
 
         jLabel1.setText("Pacientes");
 
@@ -70,9 +75,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jLabel4.setText("     Patologia");
 
-        jButton6.setIcon(new javax.swing.ImageIcon("C:\\Users\\miguel_s\\Documents\\NetBeansProjects\\Nutricao\\Nutricao\\src\\br\\senai\\nutricao\\imagens\\patologias.png")); // NOI18N
-
-        jButton7.setIcon(new javax.swing.ImageIcon("C:\\Users\\miguel_s\\Documents\\NetBeansProjects\\Nutricao\\Nutricao\\src\\br\\senai\\nutricao\\imagens\\sair.jpg")); // NOI18N
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
