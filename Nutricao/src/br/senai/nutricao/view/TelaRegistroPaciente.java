@@ -57,10 +57,16 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
     public void setAtualizaValoresTela() {
         jTextField1Nome.setText(paciente.getNome());
         jFormattedTextFieldCpf.setText(paciente.getCpf());
-        // Erro jFormattedTextFieldDtnascimento.setText(pacienteBean.getDataNascimento());
-        // jTextFieldCidade.setText(pacienteBean.getEndereco().getCidade());
+        jTextFieldBairro.setText(paciente.getEndereco().getBairro());
+        jTextFieldCelular.setText(paciente.getTelefoneCelular());
+        jTextFieldCep.setText(paciente.getEndereco().getCep());
+        jTextFieldCidade.setText(paciente.getEndereco().getCidade());
+        jTextFieldIdade.setText(paciente.getIdade()+"");
+        jTextFieldNumero.setText(paciente.getEndereco().getNumero()+"");
+        jTextFieldRua.setText(paciente.getEndereco().getRua());
+        jTextFieldUf.setText(paciente.getEndereco().getUf());
         jTextFieldEmail.setText(paciente.getEmail());
-        //  jTextFieldIdade.setText(pacienteBean.getIdade()+"");
+        jTextFieldTelefoneFixo.setText(paciente.getTelefoneResidencial());
     }
 
     /**
@@ -103,7 +109,6 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
         jLabel27 = new javax.swing.JLabel();
         jTextFieldNumero = new javax.swing.JTextField();
         jLabel28 = new javax.swing.JLabel();
-        jFormattedTextFieldTelefone = new javax.swing.JFormattedTextField();
         jLabel29 = new javax.swing.JLabel();
         jTextFieldCelular = new javax.swing.JTextField();
         jLabel30 = new javax.swing.JLabel();
@@ -117,6 +122,7 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
         jComboBoxTipo = new javax.swing.JComboBox();
         jComboBoxSexo = new javax.swing.JComboBox();
         jFormattedTextFieldCpf = new javax.swing.JFormattedTextField();
+        jTextFieldTelefoneFixo = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
@@ -224,15 +230,15 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldRua, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel25))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(6, 6, 6)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jFormattedTextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextFieldTelefoneFixo, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jTextFieldCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel28)
-                                .addGap(102, 102, 102)
+                                .addGap(100, 100, 100)
                                 .addComponent(jLabel29)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -254,16 +260,6 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
                                     .addComponent(jLabel22))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jTextFieldCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldUf, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldCep, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextField1Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -289,7 +285,17 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
                                 .addComponent(jLabel21)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jTextField1ID, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel30))
+                            .addComponent(jLabel30)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jTextFieldCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldUf, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextFieldCep, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(148, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -359,8 +365,8 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldTelefoneFixo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel30)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -597,7 +603,7 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
         paciente.setDataNascimento(dataNascimento);
         paciente.setSexo(jComboBoxSexo.getSelectedItem() + "");
         paciente.setIdade(Integer.parseInt(jTextFieldIdade.getText()));
-        paciente.setTelefoneResidencial(jFormattedTextFieldTelefone.getText());
+        paciente.setTelefoneResidencial(jTextFieldTelefoneFixo.getText());
         paciente.setTelefoneCelular(jTextFieldCelular.getText());
         paciente.setEmail(jTextFieldEmail.getText());
 
@@ -622,7 +628,7 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
         jTextFieldUf.setText("");
         jFormattedTextFieldCpf.setText("");
         jFormattedTextFieldDtnascimento.setText("");
-        jFormattedTextFieldTelefone.setText("");
+        jTextFieldTelefoneFixo.setText("");
         
         /*
     
@@ -755,7 +761,6 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
     private javax.swing.JComboBox jComboBoxTipo;
     private javax.swing.JFormattedTextField jFormattedTextFieldCpf;
     private javax.swing.JFormattedTextField jFormattedTextFieldDtnascimento;
-    private javax.swing.JFormattedTextField jFormattedTextFieldTelefone;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -798,6 +803,7 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
     private javax.swing.JTextField jTextFieldIdade;
     private javax.swing.JTextField jTextFieldNumero;
     private javax.swing.JTextField jTextFieldRua;
+    private javax.swing.JTextField jTextFieldTelefoneFixo;
     private javax.swing.JTextField jTextFieldUf;
     // End of variables declaration//GEN-END:variables
 }

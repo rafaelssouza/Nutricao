@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,21 +26,21 @@ import java.util.logging.Logger;
  * @author jorge_filho
  */
 public class PacienteDao {
-    
+
     private Connection connection;
-    
+
     public PacienteDao() {
         this.connection = new ConnectionFactory().getConnection();
-        
+
     }
 
     //Metodo provisorio Teste insert Rafael Souza
     public void adicionaTeste(PacienteBean pacienteBean) {
-        
+
         String sql = "insert into pessoa "
                 + "(nome, cpf, rg)"
                 + " values (?,?,?)";
-        
+
         PreparedStatement stmt = null;
         try {
             //Cria conexão
@@ -54,7 +55,7 @@ public class PacienteDao {
 
             // executa
             stmt.execute();
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -70,42 +71,104 @@ public class PacienteDao {
 
     //Teste consulta por cpf ou id Rafael Souza
     public PacienteBean getPacienteByCpf(PacienteBean paciente) {
-        
+
         Connection connection = null;
         PreparedStatement stmt = null;
+        SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+        Calendar data = f.getCalendar();
         try {
             //Cria conexão
             connection = new ConnectionFactory().getConnection();
-            stmt = connection.prepareStatement("select nome,idpessoa, cpf from pessoa where cpf = ? or idPessoa = ?");
-            
+            stmt = connection.prepareStatement("select * from pessoa where cpf = ? or idPessoa = ?");
+
             stmt.setString(1, paciente.getCpf());
             stmt.setInt(2, paciente.getId());
+
             ResultSet rs = stmt.executeQuery();
-            
+
             while (rs.next()) {
                 // criando o objeto Contato
                 paciente = new PacienteBean();
+                paciente.setId(rs.getInt("idpessoa"));
                 paciente.setNome(rs.getString("nome"));
                 paciente.setCpf(rs.getString("cpf"));
-                paciente.setId(rs.getInt("idpessoa"));
+                data.setTime(rs.getDate("dataNascimento"));
+                paciente.setDataNascimento(data);
+                paciente.setSexo(rs.getString("sexo"));
+                paciente.setIdade(rs.getInt("idade"));
+                
+                TipoPessoaDAO tipoPessoaDAO = new TipoPessoaDAO();
+                TipoPessoa tipoPessoa = tipoPessoaDAO.getById(rs.getInt("fk_tipopessoa"));
+                paciente.setTipo(tipoPessoa);
+                
+                EnderecoBean endereco = getEnderecoById(rs.getInt("fk_endereco"));
+                paciente.setEndereco(endereco);
+                
+                paciente.setLogin(rs.getString("login"));
+                paciente.setSenha(rs.getString("senha"));
+                paciente.setTelefoneCelular(rs.getString("telefoneCel"));
+                paciente.setTelefoneResidencial(rs.getString("telefoneFixo"));
+                paciente.setEmail(rs.getString("email"));
+
+                
+
             }
-            
+
             rs.close();
             stmt.close();
             return paciente;
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }finally{
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(PacienteDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
-    
+
+    public EnderecoBean getEnderecoById(int fk_endereco) {
+
+        Connection connection = null;
+        PreparedStatement stmt = null;
+        EnderecoBean endereco = new EnderecoBean();
+        try {
+            //Cria conexão
+            connection = new ConnectionFactory().getConnection();
+            stmt = connection.prepareStatement("select * from endereco where idEndereco = ?");
+
+            stmt.setInt(1, fk_endereco);
+
+            ResultSet rs = stmt.executeQuery();
+            
+
+            while (rs.next()) {
+                // criando o objeto Contato
+                endereco.setId(rs.getInt("idEndereco"));
+                endereco.setRua(rs.getString("rua"));
+                endereco.setBairro(rs.getString("bairro"));
+                endereco.setCidade(rs.getString("cidade"));
+                endereco.setCep(rs.getString("cep"));
+                endereco.setNumero(rs.getInt("numero"));
+            }
+            rs.close();
+            stmt.close();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return endereco;
+    }
+
     public void adicionaPaciente(PacienteBean pacienteBean) {
-        
+
         String sql = "insert into pessoa "
                 + "(nome, cpf, idade, sexo, fk_tipopessoa, fk_endereco, telefoneFixo,"
                 + " telefoneCel, email, dataNascimento, "
                 + " login, senha)"
                 + " values (?,?,?,?,?,?,?,?,?,?,?,?)";
-        
+
         PreparedStatement stmt = null;
         try {
             // prepared statement para inserção
@@ -115,11 +178,11 @@ public class PacienteDao {
             EnderecoBean endereco = pacienteBean.getEndereco();
             endereco = adicionaEndereco(endereco);
             pacienteBean.setEndereco(endereco);
-            
+
             TipoPessoa tipo = pacienteBean.getTipo();
             tipo = adicionaTipo(tipo);
             pacienteBean.setTipo(tipo);
-            
+
             stmt.setString(1, pacienteBean.getNome());
             stmt.setString(2, pacienteBean.getCpf());
             stmt.setInt(3, pacienteBean.getIdade());
@@ -141,45 +204,45 @@ public class PacienteDao {
             throw new RuntimeException(e);
         }
     }
-    
+
     public synchronized TipoPessoa adicionaTipo(TipoPessoa tipo) {
-        
+
         String sql = "insert into tipopessoa "
                 + "(nome)"
                 + " values (?)";
         try {
             // prepared statement para inserção
             PreparedStatement stmt = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            
+
             stmt.setString(1, tipo.getNome());
 
             // executa
             stmt.executeUpdate();
-            
+
             if (stmt.getGeneratedKeys() != null) {
                 ResultSet rs = stmt.getGeneratedKeys();
                 if (rs.next()) {
                     tipo.setIdTipoPessoa(rs.getInt(1));
                 }
             }
-            
+
             stmt.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        
+
         return tipo;
     }
-    
+
     public synchronized EnderecoBean adicionaEndereco(EnderecoBean endereco) {
-        
+
         String sql = "insert into endereco "
                 + "(rua, bairro, cidade, cep, numero)"
                 + " values (?,?,?,?,?)";
         try {
             // prepared statement para inserção
             PreparedStatement stmt = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            
+
             stmt.setString(1, endereco.getRua());
             stmt.setString(2, endereco.getBairro());
             stmt.setString(3, endereco.getCidade());
@@ -188,35 +251,35 @@ public class PacienteDao {
 
             // executa
             stmt.executeUpdate();
-            
+
             if (stmt.getGeneratedKeys() != null) {
                 ResultSet rs = stmt.getGeneratedKeys();
                 if (rs.next()) {
                     endereco.setIdEndereco(rs.getInt(1));
                 }
             }
-            
+
             stmt.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        
+
         return endereco;
     }
 
     //Ainda não testado.... 
     public PacienteBean getPesquisaPaciente(PacienteBean pacienteBean) {
-        
+
         Connection connection = null;
         PreparedStatement stmt = null;
         try {
             PacienteBean paciente = pacienteBean;
             stmt = connection.prepareStatement("select * from pessoa where cpf=?");
-            
+
             stmt.setString(1, paciente.getCpf());
-            
+
             ResultSet rs = stmt.executeQuery();
-            
+
             while (rs.next()) {
                 // criando o objeto Contato
                 PacienteBean resultPesquisa = new PacienteBean();
@@ -235,7 +298,7 @@ public class PacienteDao {
                 resultPesquisa.setNumeroCadastro(rs.getInt("numeroCadastro"));
                 resultPesquisa.setResponsavel(rs.getString("nm_responsavel"));
             }
-            
+
             rs.close();
             stmt.close();
             return paciente;
@@ -246,14 +309,14 @@ public class PacienteDao {
 
     //Não testado...
     public List<PacienteBean> getListaPacientes() {
-        
+
         Connection connection = null;
         PreparedStatement stmt = null;
         try {
             List<PacienteBean> listPacientes = new ArrayList();
             stmt = connection.prepareStatement("select * from pessoa");
             ResultSet rs = stmt.executeQuery();
-            
+
             while (rs.next()) {
                 // criando o objeto Contato
                 PacienteBean paciente = new PacienteBean();
@@ -290,10 +353,10 @@ public class PacienteDao {
                 + ", cep=?, bairro=?, telefoneResidencial=? "
                 + ", telefoneAlternativo=?, telefoneCelular=?, email=?, dtNascimento=?"
                 + ", numeroCadastro=?, nm_responsavel , where id=?";
-        
+
         Connection connection = null;
         PreparedStatement stmt = null;
-        
+
         try {
             stmt = connection.prepareStatement(sql);
             stmt.setString(1, paciente.getNome());
@@ -311,14 +374,14 @@ public class PacienteDao {
             stmt.setInt(13, paciente.getNumeroCadastro());
             stmt.setString(14, paciente.getResponsavel());
             stmt.setInt(15, paciente.getId());
-            
+
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-    
+
     public int remove(PacienteBean paciente) {
         int linha = 0;
         Connection connection = null;
@@ -335,5 +398,5 @@ public class PacienteDao {
         }
         return linha;
     }
-    
+
 }
