@@ -499,6 +499,11 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
         });
 
         jButtonVoltar.setText("Voltar");
+        jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVoltarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -650,7 +655,7 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
 
         // pf.updatePaciente(pb);
         //pf.updatePaciente(pb);
-        pf.updatePaciente(pb);
+        pf.updatePaciente(paciente);
         
         jTextField1Nome.setText("");
         jFormattedTextFieldCpf.setText("");
@@ -664,7 +669,7 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
         int resposta = JOptionPane.showConfirmDialog(this, "Deseja excluir?", "Exclusão", 0);
         if (resposta == 0) {
             PacienteFacade pf = new PacienteFacade();            
-            String retorno = pf.removePessoa(pacienteBean);
+            String retorno = pf.removePessoa(paciente);
             JOptionPane.showMessageDialog(rootPane, retorno);
         }
 
@@ -674,6 +679,10 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
     private void jTextFieldIdadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIdadeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldIdadeActionPerformed
+
+    private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
+ dispose();
+    }//GEN-LAST:event_jButtonVoltarActionPerformed
 
     
      public PacienteBean getPaciente() {
