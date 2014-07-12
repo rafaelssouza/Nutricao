@@ -151,6 +151,7 @@ public class PacienteDao {
                 endereco.setCidade(rs.getString("cidade"));
                 endereco.setCep(rs.getString("cep"));
                 endereco.setNumero(rs.getInt("numero"));
+                endereco.setUf(rs.getString("uf"));
             }
             rs.close();
             stmt.close();
@@ -237,8 +238,8 @@ public class PacienteDao {
     public synchronized EnderecoBean adicionaEndereco(EnderecoBean endereco) {
 
         String sql = "insert into endereco "
-                + "(rua, bairro, cidade, cep, numero)"
-                + " values (?,?,?,?,?)";
+                + "(rua, bairro, cidade, cep, numero, uf)"
+                + " values (?,?,?,?,?,?)";
         try {
             // prepared statement para inserção
             PreparedStatement stmt = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -248,6 +249,7 @@ public class PacienteDao {
             stmt.setString(3, endereco.getCidade());
             stmt.setString(4, endereco.getCep());
             stmt.setInt(5, endereco.getNumero());
+            stmt.setString(6, endereco.getUf());
 
             // executa
             stmt.executeUpdate();

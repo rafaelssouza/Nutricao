@@ -48,5 +48,4 @@ public class PacienteFacade {
         
         return dao.getPacienteByCpf(pb);
      }
-     
 }

@@ -67,6 +67,7 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
         jTextFieldUf.setText(paciente.getEndereco().getUf());
         jTextFieldEmail.setText(paciente.getEmail());
         jTextFieldTelefoneFixo.setText(paciente.getTelefoneResidencial());
+        jFormattedTextFieldDtnascimento.setText(paciente.getDataNascimento()+"");
     }
 
     /**
@@ -578,6 +579,7 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
         endereco.setCidade(jTextFieldCidade.getText());
         endereco.setCep(jTextFieldCep.getText());
         endereco.setNumero(Integer.parseInt(jTextFieldNumero.getText()));
+        endereco.setUf(jTextFieldUf.getText());
         
         
         tipo.setNome(jComboBoxTipo.getSelectedItem()+"");
