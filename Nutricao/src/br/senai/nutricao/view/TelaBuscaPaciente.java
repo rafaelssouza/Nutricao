@@ -17,11 +17,10 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author cleiton
  */
-  public class TelaBuscaPaciente extends javax.swing.JDialog {
+public class TelaBuscaPaciente extends javax.swing.JDialog {
 
     private DefaultTableModel tabela = null;
     private TelaRegistroPaciente telaRegistroPaciente;
-    
 
     /**
      * Creates new form TelaBuscaPaciente
@@ -32,6 +31,7 @@ import javax.swing.table.DefaultTableModel;
         setLocationRelativeTo(null);
 
     }
+
     //Passa a TelaRegistroPaciente para a tela BuscaPaciente
     public TelaBuscaPaciente(java.awt.Frame parent, boolean modal, TelaRegistroPaciente telaRegistroPaciente) {
         super(parent, modal);
@@ -52,27 +52,21 @@ import javax.swing.table.DefaultTableModel;
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtCPF = new javax.swing.JFormattedTextField();
         txtCodigoPasceinte = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        txtCPF = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar Paciente", 2, 0, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar Paciente", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
         jLabel1.setText("Digite CPF:");
 
         jLabel2.setText("Digite código Paciente:");
-
-        try {
-            txtCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -105,6 +99,12 @@ import javax.swing.table.DefaultTableModel;
             }
         });
 
+        try {
+            txtCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -128,8 +128,8 @@ import javax.swing.table.DefaultTableModel;
                         .addGap(0, 10, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnBuscar)
                         .addGap(125, 125, 125))))
@@ -176,21 +176,29 @@ import javax.swing.table.DefaultTableModel;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        
+
         PacienteBean bean = new PacienteBean();
         PacienteFacade facade = new PacienteFacade();
-        
+
         tabela = (DefaultTableModel) jTable1.getModel();
 
-        bean.setCpf(txtCPF.getText()!= null ? txtCPF.getText() :  "");
-        bean.setId(Integer.parseInt(txtCodigoPasceinte.getText()));
-
+       
+        String cpf = txtCPF.getText().replaceAll("\\.", "");
+        cpf = cpf.replaceAll("\\-", "");
+        
+        bean.setCpf(cpf != null ? cpf : "");
+        System.out.println("Aqui");
+        if (!txtCodigoPasceinte.getText().equals("")) {
+            bean.setId(Integer.parseInt(txtCodigoPasceinte.getText()));
+        }
         System.out.println(facade.getPesquisaByCpf(bean));
 
         DefaultTableModel tabela = (DefaultTableModel) jTable1.getModel();
-
-        tabela.addRow(new String[]{facade.getPesquisaByCpf(bean).getPesquisaPacienteNome(),
-            facade.getPesquisaByCpf(bean).getPesquisaPacienteCpf()});
+        
+        PacienteBean pacienteBean = facade.getPesquisaByCpf(bean);
+        
+        tabela.addRow(new String[]{pacienteBean.getPesquisaPacienteNome(),
+            pacienteBean.getPesquisaPacienteCpf()});
 
 
     }//GEN-LAST:event_btnBuscarActionPerformed
@@ -212,12 +220,12 @@ import javax.swing.table.DefaultTableModel;
             PacienteFacade pacienteFacade = new PacienteFacade();
             PacienteBean pacienteBean = new PacienteBean();
             pacienteBean.setCpf("" + cpf);
-            
+
             pacienteBean = pacienteFacade.getPesquisaByCpf(pacienteBean);
-            
+
             telaRegistroPaciente.setPaciente(pacienteBean);
             telaRegistroPaciente.setAtualizaValoresTela();
-            
+
             this.dispose();
 
         } else {
@@ -228,47 +236,47 @@ import javax.swing.table.DefaultTableModel;
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+      /**
+       * @param args the command line arguments
+       */
+      public static void main(String args[]) {
+          /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaBuscaPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaBuscaPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaBuscaPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaBuscaPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+           * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+           */
+          try {
+              for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                  if ("Nimbus".equals(info.getName())) {
+                      javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                      break;
+                  }
+              }
+          } catch (ClassNotFoundException ex) {
+              java.util.logging.Logger.getLogger(TelaBuscaPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+          } catch (InstantiationException ex) {
+              java.util.logging.Logger.getLogger(TelaBuscaPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+          } catch (IllegalAccessException ex) {
+              java.util.logging.Logger.getLogger(TelaBuscaPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+          } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+              java.util.logging.Logger.getLogger(TelaBuscaPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+          }
         //</editor-fold>
 
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                TelaBuscaPaciente dialog = new TelaBuscaPaciente(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+          /* Create and display the dialog */
+          java.awt.EventQueue.invokeLater(new Runnable() {
+              public void run() {
+                  TelaBuscaPaciente dialog = new TelaBuscaPaciente(new javax.swing.JFrame(), true);
+                  dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                      @Override
+                      public void windowClosing(java.awt.event.WindowEvent e) {
+                          System.exit(0);
+                      }
+                  });
+                  dialog.setVisible(true);
+              }
+          });
+      }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
