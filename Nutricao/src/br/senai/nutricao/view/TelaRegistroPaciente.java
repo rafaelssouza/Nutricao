@@ -26,8 +26,7 @@ import javax.swing.JTextField;
  */
 public class TelaRegistroPaciente extends javax.swing.JDialog {
 
-   
-   
+    private SimpleDateFormat s = new SimpleDateFormat("dd/MM/yyyy");
 
     /**
      * Creates new form TelaRegistroPaciente
@@ -46,7 +45,7 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
     PacienteBean paciente = new PacienteBean();
     EnderecoBean endereco = new EnderecoBean();
     TipoPessoa tipo = new TipoPessoa();
-    
+
     public TelaRegistroPaciente(java.awt.Frame parent, boolean modal, PacienteBean pacienteBean) {
         super(parent, modal);
         initComponents();
@@ -55,19 +54,23 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
     }
 
     public void setAtualizaValoresTela() {
+
         jTextField1Nome.setText(paciente.getNome());
         jFormattedTextFieldCpf.setText(paciente.getCpf());
         jTextFieldBairro.setText(paciente.getEndereco().getBairro());
         jTextFieldCelular.setText(paciente.getTelefoneCelular());
         jTextFieldCep.setText(paciente.getEndereco().getCep());
         jTextFieldCidade.setText(paciente.getEndereco().getCidade());
-        jTextFieldIdade.setText(paciente.getIdade()+"");
-        jTextFieldNumero.setText(paciente.getEndereco().getNumero()+"");
+        jTextFieldIdade.setText(paciente.getIdade() + "");
+        jTextFieldNumero.setText(paciente.getEndereco().getNumero() + "");
         jTextFieldRua.setText(paciente.getEndereco().getRua());
         jTextFieldUf.setText(paciente.getEndereco().getUf());
         jTextFieldEmail.setText(paciente.getEmail());
         jTextFieldTelefoneFixo.setText(paciente.getTelefoneResidencial());
-        jFormattedTextFieldDtnascimento.setText(paciente.getDataNascimento()+"");
+        
+        //Converter o Calendar para Date
+        Date dataNasci = new Date(paciente.getDataNascimento().getTimeInMillis());
+        jFormattedTextFieldDtnascimento.setText(s.format(dataNasci));
     }
 
     /**
@@ -567,23 +570,22 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
     private void jButtonProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProcurarActionPerformed
         TelaBuscaPaciente tbp = new TelaBuscaPaciente(null, true, this);
         tbp.setVisible(true);
-        
+
 
     }//GEN-LAST:event_jButtonProcurarActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         PacienteFacade pf = new PacienteFacade();
-        
+
         endereco.setRua(jTextFieldRua.getText());
         endereco.setBairro(jTextFieldBairro.getText());
         endereco.setCidade(jTextFieldCidade.getText());
         endereco.setCep(jTextFieldCep.getText());
         endereco.setNumero(Integer.parseInt(jTextFieldNumero.getText()));
         endereco.setUf(jTextFieldUf.getText());
-        
-        
-        tipo.setNome(jComboBoxTipo.getSelectedItem()+"");
-               
+
+        tipo.setNome(jComboBoxTipo.getSelectedItem() + "");
+
         paciente.setNome(jTextField1Nome.getText());
         paciente.setCpf(jFormattedTextFieldCpf.getText());
 
@@ -601,7 +603,7 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
             System.out.println("Erro de conversão da data");
             return; //para a execução do método
         }
-        
+
         paciente.setDataNascimento(dataNascimento);
         paciente.setSexo(jComboBoxSexo.getSelectedItem() + "");
         paciente.setIdade(Integer.parseInt(jTextFieldIdade.getText()));
@@ -631,7 +633,7 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
         jFormattedTextFieldCpf.setText("");
         jFormattedTextFieldDtnascimento.setText("");
         jTextFieldTelefoneFixo.setText("");
-        
+
         /*
     
          pb.setNome(jTextField1Nome.getText());
@@ -664,19 +666,19 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
         // pf.updatePaciente(pb);
         //pf.updatePaciente(pb);
         pf.updatePaciente(paciente);
-        
+
         jTextField1Nome.setText("");
         jFormattedTextFieldCpf.setText("");
-        
+
         JOptionPane.showMessageDialog(null, "Alterado com sucesso ");
 
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        
+
         int resposta = JOptionPane.showConfirmDialog(this, "Deseja excluir?", "Exclusão", 0);
         if (resposta == 0) {
-            PacienteFacade pf = new PacienteFacade();            
+            PacienteFacade pf = new PacienteFacade();
             String retorno = pf.removePessoa(paciente);
             JOptionPane.showMessageDialog(rootPane, retorno);
         }
@@ -689,18 +691,17 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextFieldIdadeActionPerformed
 
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
- dispose();
+        dispose();
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
-    
-     public PacienteBean getPaciente() {
+    public PacienteBean getPaciente() {
         return paciente;
     }
 
     public void setPaciente(PacienteBean paciente) {
         this.paciente = paciente;
     }
-    
+
     /**
      * @param args the command line arguments
      */
