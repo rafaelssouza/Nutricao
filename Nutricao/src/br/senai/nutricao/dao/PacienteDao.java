@@ -363,6 +363,7 @@ public class PacienteDao {
         Connection connection = null;
         PreparedStatement stmt = null;
 
+        
         try {
             connection = new ConnectionFactory().getConnection();
             stmt = connection.prepareStatement(sql);
