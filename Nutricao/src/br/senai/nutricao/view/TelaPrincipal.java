@@ -67,6 +67,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         jLabel1.setText("Pacientes");
 
         jLabel2.setText("  Profissionais");
@@ -182,6 +188,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
        
         dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+ TelaAgendamento ta = new TelaAgendamento(this, true);
+        ta.setVisible(true);  
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
