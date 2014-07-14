@@ -145,7 +145,7 @@ public class PacienteDao {
 
             while (rs.next()) {
                 // criando o objeto Contato
-                endereco.setId(rs.getInt("idEndereco"));
+                endereco.setIdEndereco(rs.getInt("idEndereco"));
                 endereco.setRua(rs.getString("rua"));
                 endereco.setBairro(rs.getString("bairro"));
                 endereco.setCidade(rs.getString("cidade"));
@@ -351,38 +351,44 @@ public class PacienteDao {
 
     //Não testado...
     public void altera(PacienteBean paciente) {
-        String sql = "update pessoa set nome=?, cpf=?, rg=?, sexo=?, uf=?"
-                + ", cep=?, bairro=?, telefoneResidencial=? "
-                + ", telefoneAlternativo=?, telefoneCelular=?, email=?, dtNascimento=?"
-                + ", numeroCadastro=?, nm_responsavel , where id=?";
+//        String sql = "update pessoa set nome=?, cpf=?, rg=?, sexo=?, uf=?"
+//                + ", cep=?, bairro=?, telefoneResidencial=? "
+//                + ", telefoneAlternativo=?, telefoneCelular=?, email=?, dtNascimento=?"
+//                + ", numeroCadastro=?, nm_responsavel , where id=?";
 
+
+       String sql="update pessoa set nome=?,cpf=?,idade=?,sexo=?,fk_tipopessoa=?,fk_endereco=?, "
+               +"telefoneFixo=?,telefoneCel=?,email=?,dataNascimento=?,login=?,senha=? where idPessoa=?";
+        
         Connection connection = null;
         PreparedStatement stmt = null;
 
         try {
+            connection = new ConnectionFactory().getConnection();
             stmt = connection.prepareStatement(sql);
             stmt.setString(1, paciente.getNome());
             stmt.setString(2, paciente.getCpf());
-            stmt.setString(3, paciente.getRg());
-            stmt.setString(4, paciente.getSexo());
-            stmt.setString(5, paciente.getUf());
-            stmt.setString(6, paciente.getCep());
-            stmt.setString(7, paciente.getBairro());
-            stmt.setString(8, paciente.getTelefoneResidencial());
-            stmt.setString(9, paciente.getTelefoneAlternativo());
-            stmt.setString(10, paciente.getTelefoneCelular());
-            stmt.setString(11, paciente.getEmail());
-            //  stmt.setDate(12, (Date) paciente.getDataNascimento());
-            stmt.setInt(13, paciente.getNumeroCadastro());
-            stmt.setString(14, paciente.getResponsavel());
-            stmt.setInt(15, paciente.getId());
+            stmt.setInt(3, paciente.getIdade());
+            stmt.setString(4,paciente.getSexo());
+            System.out.println("idPessoa: " + paciente.getTipo().getIdTipoPessoa());
+            stmt.setInt(5, paciente.getTipo().getIdTipoPessoa());
+            System.out.println("idEndereço: " + paciente.getEndereco().getIdEndereco());
+            stmt.setInt(6, paciente.getEndereco().getIdEndereco());
+            stmt.setString(7, paciente.getTelefoneResidencial());
+            stmt.setString(8, paciente.getTelefoneCelular());
+            stmt.setString(9, paciente.getEmail());
+            stmt.setDate(10, new Date(paciente.getDataNascimento().getTimeInMillis()));
+            stmt.setString(11, paciente.getLogin());
+            stmt.setString(12,paciente.getSenha());
+            stmt.setInt(13, paciente.getId());
 
-            stmt.execute();
+            stmt.executeUpdate();
             stmt.close();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
+
 
     public int remove(PacienteBean paciente) {
         int linha = 0;

@@ -1,7 +1,7 @@
 package br.senai.nutricao.entity;
 
 
-public class EnderecoBean extends PessoaBean{
+public class EnderecoBean {
     
     private int idEndereco;
     private String cep;
@@ -9,7 +9,16 @@ public class EnderecoBean extends PessoaBean{
     private String rua;
     private int numero;
     private String cidade;
+    private String uf;
 
+    public String getUf() {
+        return uf;
+    }
+
+    public void setUf(String uf) {
+        this.uf = uf;
+    }
+    
     public int getIdEndereco() {
         return idEndereco;
     }

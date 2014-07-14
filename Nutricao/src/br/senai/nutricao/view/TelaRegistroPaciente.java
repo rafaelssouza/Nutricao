@@ -67,7 +67,7 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
         jTextFieldUf.setText(paciente.getEndereco().getUf());
         jTextFieldEmail.setText(paciente.getEmail());
         jTextFieldTelefoneFixo.setText(paciente.getTelefoneResidencial());
-        
+
         //Converter o Calendar para Date
         Date dataNasci = new Date(paciente.getDataNascimento().getTimeInMillis());
         jFormattedTextFieldDtnascimento.setText(s.format(dataNasci));
@@ -648,29 +648,63 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
 
-        /*
-         pb.setNome(jTextField1Nome.getText());
-         pb.setCpf(jTextField2Cpf.getText());
-         pb.setRg(jTextField4Rg.getText());
-         */
-        // pb.setBairro(jTextFieldBairro.getText());
-        // pb.setDataNascimento(jFormattedTextFieldDtnascimento.getText().format(null,xx/yy/aaaa));
-        // pb.setTelefoneCelular(jTextFieldCelular.getText());
-        //pb.setEmail(jTextFieldEmail.getText());
-        // pb.setTelefoneAlternativo(jTextFieldTelRecado.getText());
-        // pb.setEstadoCivil(jComboBoxEstadoCivil.getSelectedItem()+ "");
-        // pb.setCep(jTextFieldCep.getText());
-        // pb.setResponsavel(jt);
-        PacienteFacade pf = new PacienteFacade();
+        // fazendo a conversão da data
+        try {
+            EnderecoBean enderecoNew = new EnderecoBean();
+            enderecoNew.setIdEndereco(paciente.getId());
+            enderecoNew.setRua(jTextFieldRua.getText());
+            enderecoNew.setBairro(jTextFieldBairro.getText());
+            enderecoNew.setCidade(jTextFieldCidade.getText());
+            enderecoNew.setCep(jTextFieldCep.getText());
+            enderecoNew.setNumero(Integer.parseInt(jTextFieldNumero.getText()));
+            enderecoNew.setUf(jTextFieldUf.getText());
+            
+            tipo.setIdTipoPessoa(paciente.getId());
+            tipo.setNome(jComboBoxTipo.getSelectedItem() + "");
 
-        // pf.updatePaciente(pb);
-        //pf.updatePaciente(pb);
-        pf.updatePaciente(paciente);
+            String dataEmTexto = jFormattedTextFieldDtnascimento.getText();
+            Calendar dataNascimento = null;
 
-        jTextField1Nome.setText("");
-        jFormattedTextFieldCpf.setText("");
+            Date date = new SimpleDateFormat("dd/MM/yyyy").parse(dataEmTexto);
+            dataNascimento = Calendar.getInstance();
+            dataNascimento.setTime(date);
 
-        JOptionPane.showMessageDialog(null, "Alterado com sucesso ");
+            paciente.setEndereco(enderecoNew);
+            paciente.setTipo(tipo);
+            paciente.setIdade(Integer.parseInt(jTextFieldIdade.getText()));
+            paciente.setNome(jTextField1Nome.getText());
+            paciente.setCpf(jFormattedTextFieldCpf.getText());
+            paciente.setTelefoneCelular(jTextFieldCelular.getText());
+            paciente.setDataNascimento(dataNascimento);
+            paciente.setEmail(jTextFieldEmail.getText());
+            paciente.setTelefoneResidencial(jTextFieldTelefoneFixo.getText());
+            paciente.setSexo(jComboBoxSexo.getSelectedItem() + "");
+
+            PacienteFacade pf = new PacienteFacade();
+
+            pf.updatePaciente(paciente);
+
+            jTextField1ID.setText("");
+            jTextField1Nome.setText("");
+            jTextFieldBairro.setText("");
+            jTextFieldCelular.setText("");
+            jTextFieldCep.setText("");
+            jTextFieldCidade.setText("");
+            jTextFieldEmail.setText("");
+            jTextFieldIdade.setText("");
+            jTextFieldNumero.setText("");
+            jTextFieldRua.setText("");
+            jTextFieldUf.setText("");
+            jFormattedTextFieldCpf.setText("");
+            jFormattedTextFieldDtnascimento.setText("");
+            jTextFieldTelefoneFixo.setText("");
+
+            JOptionPane.showMessageDialog(null, "Alterado com sucesso ");
+
+        } catch (ParseException e) {
+            System.out.println("Erro de conversão da data");
+            return; //para a execução do método
+        }
 
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
