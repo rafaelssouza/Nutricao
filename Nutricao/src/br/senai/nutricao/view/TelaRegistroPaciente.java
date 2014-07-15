@@ -619,20 +619,7 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
 
         System.out.println("Gravado com sucesso!");
 
-        jTextField1ID.setText("");
-        jTextField1Nome.setText("");
-        jTextFieldBairro.setText("");
-        jTextFieldCelular.setText("");
-        jTextFieldCep.setText("");
-        jTextFieldCidade.setText("");
-        jTextFieldEmail.setText("");
-        jTextFieldIdade.setText("");
-        jTextFieldNumero.setText("");
-        jTextFieldRua.setText("");
-        jTextFieldUf.setText("");
-        jFormattedTextFieldCpf.setText("");
-        jFormattedTextFieldDtnascimento.setText("");
-        jTextFieldTelefoneFixo.setText("");
+        limparCampos();
 
         /*
     
@@ -658,7 +645,7 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
             enderecoNew.setCep(jTextFieldCep.getText());
             enderecoNew.setNumero(Integer.parseInt(jTextFieldNumero.getText()));
             enderecoNew.setUf(jTextFieldUf.getText());
-            
+
             tipo.setIdTipoPessoa(paciente.getId());
             tipo.setNome(jComboBoxTipo.getSelectedItem() + "");
 
@@ -684,20 +671,7 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
 
             pf.updatePaciente(paciente);
 
-            jTextField1ID.setText("");
-            jTextField1Nome.setText("");
-            jTextFieldBairro.setText("");
-            jTextFieldCelular.setText("");
-            jTextFieldCep.setText("");
-            jTextFieldCidade.setText("");
-            jTextFieldEmail.setText("");
-            jTextFieldIdade.setText("");
-            jTextFieldNumero.setText("");
-            jTextFieldRua.setText("");
-            jTextFieldUf.setText("");
-            jFormattedTextFieldCpf.setText("");
-            jFormattedTextFieldDtnascimento.setText("");
-            jTextFieldTelefoneFixo.setText("");
+            limparCampos();
 
             JOptionPane.showMessageDialog(null, "Alterado com sucesso ");
 
@@ -716,6 +690,7 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
             String retorno = pf.removePessoa(paciente);
             JOptionPane.showMessageDialog(rootPane, retorno);
         }
+        limparCampos();
 
 // TODO add your handling code here:
     }//GEN-LAST:event_jButtonExcluirActionPerformed
@@ -734,6 +709,23 @@ public class TelaRegistroPaciente extends javax.swing.JDialog {
 
     public void setPaciente(PacienteBean paciente) {
         this.paciente = paciente;
+    }
+
+    private void limparCampos() {
+        jTextField1ID.setText("");
+        jTextField1Nome.setText("");
+        jTextFieldBairro.setText("");
+        jTextFieldCelular.setText("");
+        jTextFieldCep.setText("");
+        jTextFieldCidade.setText("");
+        jTextFieldEmail.setText("");
+        jTextFieldIdade.setText("");
+        jTextFieldNumero.setText("");
+        jTextFieldRua.setText("");
+        jTextFieldUf.setText("");
+        jFormattedTextFieldCpf.setText("");
+        jFormattedTextFieldDtnascimento.setText("");
+        jTextFieldTelefoneFixo.setText("");
     }
 
     /**
